@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="/css/pages/getStarted.css">
+<%- include('../partials/header.ejs') %>
+
+    <body>
+        <%- include('../partials/navbar.ejs') %>
+            <main>
+                <div class="wrapper">
+                    <div class="side-bar">
+                        <h1>Create an account</h1>
+                        <p>To access our full website please create an account! Its free!</p>
+                        <div class="backgroud-image"></div>
+                    </div>
+                    <div class="info-bar">
+                        <form>
+                            <div class="signin-form-container">
+                                <h1>Login</h1>
+                                <hr>
+                                <input name="username" type="text" placeholder="Username or email" required>
+                                <input name="password" type="password" placeholder="Password" required>
+                                <div class="sign-in-options">
+                                    <a href="/get-started/register">New? Register Account</a><a>Forgot Password?</a><br>
+                                    <button class="just-login">Login</button>
+                                </div>
+                             </div>
+                        </form>
+                    </div>
+                </div>
+                <%- include('../partials/footer.ejs') %>
+
+            </main>
+    </body>
+
+</html>

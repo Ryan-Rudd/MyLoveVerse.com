@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/css/navbar.css">
+<nav>
+    <img src="/image/logo.png">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li>Support</li>
+        <li>Pricing</li>
+        <li>Blog</li>
+        <li><a href="/get-started">Get Started</a></li>
+
+    </ul>
+    <a href="/get-started">Get Started</a>
+    <a class="mobile-only-menu" id="mobileMenuIcon"><i class="fa fa-bars" style="font-size:48px;"></i></a>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-menu-dropdown" id="mobileDropdownMenu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>Support</li>
+            <li>Pricing</li>
+            <li>Blog</li>
+            <li><a href="/get-started">Get Started</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+<script>
+    const mobileMenuIcon = document.getElementById("mobileMenuIcon");
+    const mobileDropdownMenu = document.getElementById("mobileDropdownMenu");
+
+    mobileMenuIcon.addEventListener("click", () => {
+        mobileDropdownMenu.classList.toggle("show");
+        mobileMenuIcon.classList.toggle("open");
+    });
+</script>

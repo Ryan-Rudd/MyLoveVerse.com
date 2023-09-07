@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="../css/pages/getStarted.css">
+<%- include('../partials/header.ejs') %>
+
+<body>
+    <%- include('../partials/navbar.ejs') %>
+    <main>
+        <div class="wrapper">
+
+            <div class="side-bar">
+                <h1>Create an account</h1>
+                <p>To access our full website, please create an account! It's free!</p>
+                <div class="backgroud-image"></div>
+            </div>
+            <div class="info-bar">
+
+                <form onsubmit="handleRegisterPost()">
+                    <div class="signin-form-container">
+                        <div id="error-box" class="error-box"></div>
+
+                        <h1>Register</h1>
+                        <hr>
+                        <input name="username" type="text" placeholder="Username" required>
+                        <input name="email" type="text" placeholder="Email" required>
+
+                        <!-- Password input with instructions -->
+                        <input name="password" id="password" type="password" placeholder="Password" required>
+                        <div id="password-strength" class="password-strength"></div>
+                        <p class="password-instructions">
+                            Password must:
+                            <ul>
+                                <li>Contain at least 8 characters.</li>
+                                <li>Include at least one uppercase letter, one lowercase letter, one digit, and one special character.</li>
+                                <li>Not be a common password (avoid using easily guessable passwords like "password" or "123456").</li>
+                            </ul>
+                        </p>
+
+                        <div class="sign-in-options">
+                            <a href="/get-started">Already registered? Login</a><br>
+                            <button class="just-login">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <%- include('../partials/footer.ejs') %>
+
+    </main>
+</body>
+<script src="/js/posts/handleRegisterPost.js"></script>
+</html>

@@ -1,0 +1,69 @@
+.hero {
+    width: 100%;
+    height: 300px;
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    color: rgb(46, 46, 46);
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 11px;
+    box-shadow: #12afb4 0px 0px 4px 0px,
+    #0ca7ac 0px 0px 6px 0px;
+    font-family: "Berlin Sans FB", sans-serif;
+    gap: 0px;
+    margin-bottom: 35px;
+}
+.hero > a 
+{
+    padding: 10px 35px;
+    background-color: #4CBAE9;
+    width: fit-content;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.247);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: box-shadow .5s;
+
+}
+.hero > a:hover
+{
+    box-shadow: rgba(18, 175, 180, 0.51) 4px 5px 12px 0px,
+            #0ca7ac 4px 3px 8px -6px;
+    background-color: #48b5e4;
+    transition: box-shadow .5s;
+}
+.hero h1, .hero p, .hero a
+{
+    margin: 5px;
+    margin-left: 40px;
+    margin-right: 40px;
+
+}
+
+main > h1 
+{
+    color: rgba(0, 0, 0, 0.637);
+    margin-left: 25px;
+    font-weight: 500;
+}
+
+.text-section-adj-img
+{
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.text-section-adj-img img
+{
+    max-height: 180px;
+    margin: 0;
+    padding: 0;
+    margin-left: 5%;
+}
+.text-section-adj-img p 
+{
+    margin-left: 5%;
+    font-size: 22px;
+    width: 60%;
+}

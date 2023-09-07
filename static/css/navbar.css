@@ -1,0 +1,146 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    max-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 999;
+    
+}
+
+nav > img {
+    margin-right: auto;
+    max-width: 70px;
+    margin-left: 25px;
+}
+
+nav > ul {
+    color: #707070;
+    font-family: "Berlin Sans FB", sans-serif;
+    display: flex;
+    list-style: none;
+    position: absolute;
+}
+
+nav > ul > li {
+    font-size: 22px;
+    margin-left: 45px;
+    position: relative;
+    cursor: pointer;
+}
+
+nav > ul > li::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.603);
+    transition: width 0.5s ease, left 0.5s ease;
+}
+
+nav > ul > li:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+nav > a:not(.mobile-only-menu) 
+{
+    font-family: "Berlin Sans FB", sans-serif;
+
+    margin-right: 15px;
+    padding: 10px 35px;
+    border-radius: 35px;
+    border: 3px solid #13ADB4;
+    color: #303030;
+    transition: .3s box-shadow, transform .5s, border .4s;
+
+}
+nav > a:hover:not(.mobile-only-menu)
+{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: .3s box-shadow, transform .5s, border .4s;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.295);
+    border: 3px solid #0f858b;
+}
+.mobile-only-menu
+{
+    display: none;
+    font-size: 10px;
+    margin-right: 15px;
+    color: rgba(0, 0, 0, 0.671);
+}
+
+@media screen and (max-width: 912px)
+{
+    nav > a
+    {
+        display: none;
+    }
+}
+
+
+.mobile-menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 998;
+    transform-origin: top;
+    transition: max-height 0.5s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.mobile-menu-dropdown ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-menu-dropdown li {
+    font-size: 18px;
+    padding: 15px 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    font-family: "Berlin Sans FB", sans-serif;
+
+}
+
+.mobile-menu-dropdown.show {
+    max-height: 400px; /* Adjust the height as needed */
+}
+
+/* Hamburger Animation */
+.mobile-only-menu i 
+{
+    
+    transition: transform 0.3s ease-in-out;
+
+}
+.mobile-only-menu.open i {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 690px) {
+    /* Hide navigation links and show mobile menu icon */
+    nav > ul {
+        display: none;
+    }
+    .mobile-only-menu {
+        display: flex;
+    }
+
+    /* Show the mobile dropdown menu */
+    .mobile-menu-dropdown {
+        display: block;
+    }
+}
