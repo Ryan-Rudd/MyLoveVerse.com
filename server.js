@@ -1,42 +1,49 @@
-const express = require('express')
-const staticRouter = require('./router/static')
-const app = express()
-
-const dbClient = require('./middleware/createDbClient')
-
+const express = require('express');
+const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const dbClient = require('./middleware/createDbClient');
+const { encrypt, decrypt } = require('./security/encyptor');
+const router = require('./router/static');
+const encryptRequestBody = require('./middleware/mitmEncryption'); // Import the middleware
+
 dotenv.config();
-
-const { encrypt, decrypt } = require('./security/encyptor')
-
 const encryptionKey = process.env.ENCRYPTION_KEY;
 const iv = process.env.ENCRYPTION_IV;
 
-let client = dbClient
 if (!encryptionKey || !iv) {
-  console.error('Encryption key and/or IV are not set in the environment variables.');
-  process.exit(1);
+    console.error('Encryption key and/or IV are not set in the environment variables.');
+    process.exit(1);
 }
 
-const encryptData = (text=String) => 
-{
-    const { encryptedData, tag } = encrypt(text, encryptionKey, Buffer.from(iv, 'hex'));
-    return encryptedData
-}
-const decryptData = (text=String) => 
-{
-    const decryptedData = decrypt(text, encryptionKey, Buffer.from(iv, 'hex'), tag);
-    return decryptedData
-}
+const app = express();
+const port = process.env.PORT || 2000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/static'));
+app.set('view engine', 'ejs');
+app.use('/', router);
+
+let client = dbClient;
 
 async function connectDB() {
-    await client.connect()
-    console.log("- DB Connection Established")
+    try {
+        await client.connect();
+        console.log("- DB Connection Established");
+        return client;
+    } catch (err) {
+        console.error("Error connecting to the database:", err);
+        process.exit(1);
+    }
 }
-app.set('view engine', 'ejs')
-app.use(express.static(__dirname + '/static'))
 
-app.use(staticRouter)
-connectDB().then(()=>{
-app.listen(2000, ()=>{console.log("Listening on port 2000")})
-})
+connectDB().then(() => {
+    const postRouter = require('./router/postRouter')(client);
+
+    // Use the encryptRequestBody middleware for '/method/post' route
+    app.use('/method/post', encryptRequestBody, postRouter);
+
+    app.listen(port, () => {
+        console.log(`Listening on port ${port}`);
+    });
+});

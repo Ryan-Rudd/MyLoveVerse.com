@@ -100,7 +100,7 @@ async function handleRegisterPost(event) {
         return;
     }
 
-    fetch('/method/post/register/account', {
+    fetch('/method/post/account/register', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
